@@ -7,8 +7,7 @@
     "start": "node server.js",
     "test": "mocha --recursive --timeout 20000",
     "build": "npm run lint && nyc --check-coverage --lines 90 --functions 90 --branches 90 npm test",
-    "lint": "eslint **/*.js",
-    "preinstall": "npm run build"
+    "lint": "eslint **/*.js"
   },
   "repository": {
     "type": "git",
