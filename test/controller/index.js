@@ -1,1 +1,1 @@
-module.exports.controller = require('./controller.test');
+module.exports.index = require('./index.test');
