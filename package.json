@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "test": "mocha --recursive --timeout 20000",
-    "build": "npm run lint && nyc --check-coverage --lines 90 --functions 90 --branches 90 npm test",
+    "report": "nyc report --reporter=text-lcov | coveralls",
+    "build": "npm run lint && nyc --check-coverage --lines 95 --functions 95 --branches 95 npm test",
     "lint": "eslint **/*.js"
   },
   "repository": {
@@ -22,6 +23,7 @@
   "homepage": "https://github.com/awapps/planning-poker-engine#readme",
   "devDependencies": {
     "chai": "^3.5.0",
+    "coveralls": "^2.11.12",
     "eslint": "^3.3.1",
     "eslint-config-airbnb-base": "^5.0.3",
     "eslint-plugin-import": "^1.14.0",
