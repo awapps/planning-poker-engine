@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+    "test": "mocha --recursive --timeout 20000",
+    "build": "npm run lint && nyc --check-coverage --lines 90 --functions 90 --branches 90 npm test",
     "lint": "eslint **/*.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "preinstall": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -20,9 +22,12 @@
   },
   "homepage": "https://github.com/awapps/planning-poker-engine#readme",
   "devDependencies": {
+    "chai": "^3.5.0",
     "eslint": "^3.3.1",
     "eslint-config-airbnb-base": "^5.0.3",
-    "eslint-plugin-import": "^1.14.0"
+    "eslint-plugin-import": "^1.14.0",
+    "mocha": "^3.0.2",
+    "nyc": "^8.1.0"
   },
   "dependencies": {
     "restify": "^4.1.1"
