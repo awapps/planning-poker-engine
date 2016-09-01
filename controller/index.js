@@ -17,7 +17,6 @@ const controller = {
         // server.put('/rooms/:id', roomController.update);
 
         server.get('/status', getStatus);
-        server.get('/statu', getStatus);
     }
 };
 
