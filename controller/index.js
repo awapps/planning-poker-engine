@@ -1,21 +1,21 @@
 
+const roomsController = require('./rooms');
+
 /**
- * @api {get} /status Check backend status
+ * @api {get} /status Check application status
  * @apiName GetStatus
+ * @apiGroup
  *
- *
- * @apiSuccess {String} Backend status.
+ * @apiSuccess {String} OK Application Status.
  */
 const getStatus = (req, res, next) => {
-    res.send(200, 'ok');
+    res.send(200, 'OK');
     return next();
 };
 
 const controller = {
     setup: server => {
-        // server.post('/rooms', roomController.create);
-        // server.put('/rooms/:id', roomController.update);
-
+        roomsController.setup(server);
         server.get('/status', getStatus);
     }
 };
