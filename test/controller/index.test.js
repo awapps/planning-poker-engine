@@ -14,7 +14,7 @@ describe('Controller', () => {
         request(server).get('/status')
         .expect(200)
         .end((err, res) => {
-            res.body.should.equal('ok');
+            res.body.should.equal('OK');
             return done(err);
         });
     });
