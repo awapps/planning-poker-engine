@@ -7,7 +7,7 @@
  * @apiSuccess {String} OK Room successfully create.
  */
 const createRoom = (req, res, next) => {
-    res.send(200, 'OK');
+    res.send({ status: 'SUCCESS' });
     return next();
 };
 
