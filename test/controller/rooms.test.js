@@ -11,9 +11,14 @@ describe('Rooms Controller', () => {
     });
 
     describe('Creation', () => {
+        const room = {
+            owner: 'OwnerName',
+            room: 'new-room-name',
+        };
+
         it('should return OK', done => {
             request(server).post('/rooms')
-            .send({})
+            .send(room)
             .expect(200)
             .end((err, res) => {
                 res.body.should.be.an('object');
