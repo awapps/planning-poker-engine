@@ -1,6 +1,10 @@
 
-const server = require('restify').createServer();
+const restify = require('restify');
+const server = restify.createServer();
 const controller = require('./controller');
+
+server.use(restify.queryParser());
+server.use(restify.bodyParser());
 
 controller.setup(server);
 
