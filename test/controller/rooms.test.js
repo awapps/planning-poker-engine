@@ -13,10 +13,10 @@ describe('Rooms Controller', () => {
     describe('Creation', () => {
         const room = {
             owner: 'OwnerName',
-            room: 'new-room-name',
+            name: 'new-room-name'
         };
 
-        it('should return OK', done => {
+        it('should return 200 OK for a valid Room', done => {
             request(server).post('/rooms')
             .send(room)
             .expect(200)
@@ -24,6 +24,15 @@ describe('Rooms Controller', () => {
                 res.body.should.be.an('object');
                 res.body.should.have.property('status');
                 res.body.status.should.equal('SUCCESS');
+                return done(err);
+            });
+        });
+
+        it('should return 422 UnprocessableEntityError for a missing props Room', done => {
+            request(server).post('/rooms')
+            .send({})
+            .expect(422)
+            .end((err, res) => {
                 return done(err);
             });
         });
