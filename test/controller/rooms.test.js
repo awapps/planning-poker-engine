@@ -10,7 +10,7 @@ describe('Rooms Controller', () => {
         roomsController.should.respondTo('setup');
     });
 
-    describe('Creation', () => {
+    describe('Create Room', () => {
         const room = {
             owner: 'OwnerName',
             name: 'new-room-name'
@@ -48,6 +48,27 @@ describe('Rooms Controller', () => {
 
         it('should return 200 OK for valid Members list', done => {
             request(server).post('/rooms/1/members')
+            .send(membersList)
+            .expect(200)
+            .end((err, res) => {
+                res.body.should.be.an('object');
+                res.body.should.have.property('status');
+                res.body.status.should.equal('SUCCESS');
+                return done(err);
+            });
+        });
+    });
+
+    describe('Delete members', () => {
+        const membersList = [
+        {
+            name: 'Foo'
+        }, {
+            name: 'Bar'
+        }];
+
+        it('should return 200 OK for valid Members list to be removed', done => {
+            request(server).delete('/rooms/1/members')
             .send(membersList)
             .expect(200)
             .end((err, res) => {
