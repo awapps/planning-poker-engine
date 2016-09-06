@@ -37,4 +37,25 @@ describe('Rooms Controller', () => {
             });
         });
     });
+
+    describe('Add members', () => {
+        const membersList = [
+        {
+            name: 'Foo'
+        }, {
+            name: 'Bar'
+        }];
+
+        it('should return 200 OK for valid Members list', done => {
+            request(server).post('/rooms/1/members')
+            .send(membersList)
+            .expect(200)
+            .end((err, res) => {
+                res.body.should.be.an('object');
+                res.body.should.have.property('status');
+                res.body.status.should.equal('SUCCESS');
+                return done(err);
+            });
+        });
+    });
 });
