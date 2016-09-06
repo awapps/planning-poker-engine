@@ -30,18 +30,38 @@ const createRoom = (req, res, next) => {
 *   @apiGroup Rooms
 *   @apiParamExample {json} Members-Example:
 *   [
-*		{
-*      		"name": "Moe"
-*   	}, {
-*      		"name": "Curly"
-*   	}
-*	]
+*       {
+*           "name": "Moe"
+*       }, {
+*           "name": "Curly"
+*       }
+*   ]
 *
 *   @apiSuccess {String} OK Members successfully added.
-*   @apiError UnprocessableEntityError The room does not have all required props.
 *
 **/
 const addMembers = (req, res, next) => {
+    res.send({ status: 'SUCCESS' });
+    return next();
+};
+
+/**
+*   @api {delete} /rooms/:id/members Delete members from an existing room
+*   @apiName DeleteMembers
+*   @apiGroup Rooms
+*   @apiParamExample {json} Members-Example:
+*   [
+*       {
+*           "name": "Moe"
+*       }, {
+*           "name": "Curly"
+*       }
+*   ]
+*
+*   @apiSuccess {String} OK Members successfully deleted from the room.
+*
+**/
+const deleteMembers = (req, res, next) => {
     res.send({ status: 'SUCCESS' });
     return next();
 };
@@ -50,6 +70,7 @@ const controller = {
     setup: server => {
         server.post('/rooms', createRoom);
         server.post('/rooms/:id/members', addMembers);
+        server.del('/rooms/:id/members', deleteMembers);
     }
 };
 
